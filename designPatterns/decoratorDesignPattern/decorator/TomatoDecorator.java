@@ -1,0 +1,13 @@
+package designPatterns.decoratorDesignPattern.decorator;
+
+import designPatterns.decoratorDesignPattern.baseComponent.Component;
+
+public class TomatoDecorator extends Decorator {
+    public TomatoDecorator(Component component) {
+        this.component = component;
+    }
+    @Override
+    public int getPrice() {
+        return this.component.getPrice()+10;
+    }
+}

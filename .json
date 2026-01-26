@@ -1,0 +1,89 @@
+{
+  "config_id": "4464b2b2-552d-45da-b67b-ff079addfed7",
+  "interpolations": {
+    "employee_name": "Vinay",
+    "comment_perspective": "Reviewee",
+    "action_type": "Summarize",
+    "overallComments": {
+      "section_Goal": [
+        {
+          "performance_function_type": "Goal",
+          "user_comments": [
+            "<p>Successfully delivered the Q4 product roadmap ahead of schedule, completing all 15 planned features.</p>"
+          ],
+          "section_summary": "<h3>Goal Achievement Summary</h3>"
+        },
+        {
+          "performance_function_type": "Goal",
+          "user_comments": [
+            "<p>Improved customer satisfaction scores from 3.8 to 4.5 out of 5 through enhanced support processes.</p>"
+          ],
+          "section_summary": null
+        },
+        {
+          "performance_function_type": "Goal",
+          "user_comments": [
+            "<p>Completed AWS Solutions Architect certification and applied cloud skills to migrate 5 legacy applications.</p>",
+            "<p>Established cross-departmental collaboration framework now used by 5 teams across the organization.</p>"
+          ],
+          "section_summary": null
+        }
+      ],
+      "section_CoreValue": [
+        {
+          "performance_function_type": "CoreValue",
+          "user_comments": [
+            "<p>Consistently demonstrates integrity in all business dealings and client interactions.</p>"
+          ],
+          "section_summary": "<h3>Integrity & Accountability</h3>"
+        },
+        {
+          "performance_function_type": "CoreValue",
+          "user_comments": [
+            "<p>Shows genuine commitment to customer success and long-term satisfaction.</p>",
+            "<p>Goes above and beyond to ensure client needs are met, often working extra hours during critical periods.</p>"
+          ],
+          "section_summary": "<h3>Customer Focus</h3><p>Exceptional customer focus with genuine commitment to client success. Proactively addresses customer needs and builds strong trust-based relationships.</p><p>Consistently receives positive client feedback for responsiveness and quality.</p>"
+        },
+        {
+          "performance_function_type": "CoreValue",
+          "user_comments": [
+            "<p>Embraces innovation and actively encourages creative problem-solving within the team.</p>",
+            "<p>Continuously seeks opportunities for improvement and professional growth.</p>"
+          ],
+          "section_summary": "<h3>Innovation & Continuous Improvement</h3>"
+        }
+      ],
+      "section_Competency": [
+        {
+          "performance_function_type": "Competency",
+          "user_comments": [
+            "<p>Demonstrates exceptional problem-solving skills when addressing complex technical challenges.</p>",
+            "<p>Consistently delivers high-quality work with meticulous attention to detail and accuracy.</p>"
+          ],
+          "section_summary": "<h3>Problem-Solving & Analytical Skills</h3>"
+        },
+        {
+          "performance_function_type": "Competency",
+          "user_comments": [
+            "<p>Excellent communication skills across all organizational levels, from executives to individual contributors.</p>",
+            "<p>Effectively presents technical concepts to non-technical stakeholders using clear analogies and examples.</p>"
+          ],
+          "section_summary": null
+        },
+        {
+          "performance_function_type": "Competency",
+          "user_comments": [
+            "<p>Strong leadership capabilities in guiding team through challenging project transitions.</p>",
+            "<p>Empowers team members to take ownership of their work and make independent decisions.</p>"
+          ],
+          "section_summary": null
+        }
+      ]
+    }
+  }
+}
+
+
+
+

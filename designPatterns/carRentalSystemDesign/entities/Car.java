@@ -2,11 +2,15 @@ package designPatterns.carRentalSystemDesign.entities;
 
 import designPatterns.carRentalSystemDesign.enums.VehicleStatus;
 import designPatterns.carRentalSystemDesign.enums.VehicleType;
+import designPatterns.carRentalSystemDesign.observer.RequestObserver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Car extends Vehicle {
     private static final double GPS_CHARGE = 100.0;
     private static final double CHILD_SEAT_CHARGE = 75.0;
-    
+    private List<RequestObserver> observers = new ArrayList<>();
     private int seatingCapacity;
     private boolean hasGPS;
     private boolean hasChildSeat;
@@ -59,5 +63,22 @@ public class Car extends Vehicle {
         if (hasGPS) addon += GPS_CHARGE;
         if (hasChildSeat) addon += CHILD_SEAT_CHARGE;
         return addon;
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (RequestObserver observer : observers) {
+            observer.update();
+        }
+    }
+
+    @Override
+    public void addObserver(RequestObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(RequestObserver observer) {
+        observers.remove(observer);
     }
 }

@@ -1,6 +1,8 @@
 package designPatterns.carRentalSystemDesign.entities;
 
-public class User {
+import designPatterns.carRentalSystemDesign.observer.RequestObserver;
+
+public class User implements RequestObserver {
     private String name;
     private String email;
     private String phoneNumber;
@@ -49,10 +51,15 @@ public class User {
 
     public User() {
     }
-    
+
     public User(String name, String phoneNumber, String email) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    @Override
+    public void update() {
+        System.out.println("Notified to this User with Name " + this.name);
     }
 }

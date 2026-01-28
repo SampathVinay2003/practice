@@ -1,8 +1,8 @@
 package designPatterns.carRentalSystemDesign.service;
 
 import designPatterns.carRentalSystemDesign.entities.Booking;
-import designPatterns.carRentalSystemDesign.entities.Vehicle;
 import designPatterns.carRentalSystemDesign.entities.User;
+import designPatterns.carRentalSystemDesign.entities.Vehicle;
 import designPatterns.carRentalSystemDesign.enums.BookingStatus;
 import designPatterns.carRentalSystemDesign.enums.VehicleStatus;
 import designPatterns.carRentalSystemDesign.exceptions.BookingNotFoundException;
@@ -46,8 +46,8 @@ public class BookingService {
         return instance;
     }
 
-    public Booking createBooking(User user, Vehicle vehicle, LocalDateTime startTime, 
-                                 LocalDateTime endTime, String locationId, 
+    public Booking createBooking(User user, Vehicle vehicle, LocalDateTime startTime,
+                                 LocalDateTime endTime, String locationId,
                                  PricingStrategy pricingStrategy) {
         validator.validateBookingRequest(user, vehicle, startTime, endTime);
 
@@ -84,9 +84,10 @@ public class BookingService {
         }
 
         boolean paymentSuccess = paymentStrategy.pay((int) booking.getEstimatedCost(), booking.getUser());
-        
+
         if (!paymentSuccess) {
             booking.getVehicle().setStatus(VehicleStatus.AVAILABLE);
+            booking.getVehicle().notifyObservers();
             vehicleRepository.save(booking.getVehicle());
             throw new PaymentFailedException("Payment failed for booking: " + bookingId);
         }
@@ -108,15 +109,15 @@ public class BookingService {
 
         BookingState state = new ConfirmedState();
         state.activate(booking);
-        
+
         booking.getVehicle().setStatus(VehicleStatus.RENTED);
         booking.getVehicle().setUserAssigned(booking.getUser());
-        
+
         vehicleRepository.save(booking.getVehicle());
         bookingRepository.save(booking);
     }
 
-    public double completeBooking(String bookingId, LocalDateTime actualReturnTime, 
+    public double completeBooking(String bookingId, LocalDateTime actualReturnTime,
                                   PricingStrategy pricingStrategy, PaymentStrategy paymentStrategy) {
         Booking booking = bookingRepository.findById(bookingId)
                 .orElseThrow(() -> new BookingNotFoundException("Booking not found: " + bookingId));
@@ -126,11 +127,11 @@ public class BookingService {
         }
 
         booking.setActualReturnTime(actualReturnTime);
-        
+
         double actualCost = pricingStrategy.calculatePrice(
-            booking.getVehicle(), 
-            booking.getStartTime(), 
-            actualReturnTime
+                booking.getVehicle(),
+                booking.getStartTime(),
+                actualReturnTime
         );
         actualCost += booking.getVehicle().getAddonPrice();
 
@@ -155,8 +156,9 @@ public class BookingService {
         state.complete(booking);
 
         booking.getVehicle().setStatus(VehicleStatus.AVAILABLE);
+        booking.getVehicle().notifyObservers();
         booking.getVehicle().setUserAssigned(null);
-        
+
         vehicleRepository.save(booking.getVehicle());
         bookingRepository.save(booking);
 
@@ -177,7 +179,8 @@ public class BookingService {
 
         booking.setStatus(BookingStatus.CANCELLED);
         booking.getVehicle().setStatus(VehicleStatus.AVAILABLE);
-        
+        booking.getVehicle().notifyObservers();
+
         vehicleRepository.save(booking.getVehicle());
         bookingRepository.save(booking);
     }

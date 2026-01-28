@@ -2,6 +2,7 @@ package designPatterns.carRentalSystemDesign.entities;
 
 import designPatterns.carRentalSystemDesign.enums.VehicleStatus;
 import designPatterns.carRentalSystemDesign.enums.VehicleType;
+import designPatterns.carRentalSystemDesign.observer.RequestObserver;
 
 import java.time.LocalDate;
 
@@ -147,6 +148,12 @@ public abstract class Vehicle {
     }
 
     public abstract boolean requiresInspection();
-    
+
     public abstract double getAddonPrice();
+
+    public abstract void notifyObservers();
+
+    public abstract void addObserver(RequestObserver observer);
+
+    public abstract void removeObserver(RequestObserver observer);
 }

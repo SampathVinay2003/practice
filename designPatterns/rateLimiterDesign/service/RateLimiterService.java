@@ -17,9 +17,9 @@ public class RateLimiterService {
 
     private RateLimiterService() {
         rateLimiterMap = new HashMap<>();
-        rateLimiterMap.put(SubscriptionType.BASIC, new RateLimiter(10, 60, new TokenBucketLimitingStrategy()));
-        rateLimiterMap.put(SubscriptionType.PREMIUM, new RateLimiter(5, 60, new WindowStrategy()));
-        rateLimiterMap.put(SubscriptionType.ULTRA_PREMIUM, new RateLimiter(8, 60, new SlidingWindowLimitingStrategy()));
+        rateLimiterMap.put(SubscriptionType.BASIC, new RateLimiter(new TokenBucketLimitingStrategy()));
+        rateLimiterMap.put(SubscriptionType.PREMIUM, new RateLimiter(new WindowStrategy()));
+        rateLimiterMap.put(SubscriptionType.ULTRA_PREMIUM, new RateLimiter( new SlidingWindowLimitingStrategy()));
     }
 
     public static RateLimiterService getInstance() {
